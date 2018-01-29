@@ -32,13 +32,13 @@ function Movie(props) {
                     <div className='col-xs-4 col-md-3 text-success'><h4>Title:</h4></div>
                     <div className='col-xs-4 col-md-2 text-success'><h4>Year:</h4></div>
                     <div className='col-xs-4 col-md-3 text-success'><h4>Format:</h4></div>
-                    <div className='visible-md col-md-4 text-success'><h4>Actors:</h4></div>
+                    <div className='visible-md visible-lg col-md-4 text-success'><h4>Actors:</h4></div>
                 </div>
                 <div className='row'>
                     <div className='col-xs-4 col-md-3'>{name}</div>
                     <div className='col-xs-4 col-md-2'>{year}</div>
                     <div className='col-xs-4 col-md-3'>{format}</div>
-                    <div className='hidden-md col-xs-12'><h4>Actors:</h4></div>
+                    <div className='hidden-md hidden-lg col-xs-12'><h4>Actors:</h4></div>
                     <div className='col-xs-12 col-md-4'>{actorsJoined}</div>
                 </div>
             </Panel.Body>
