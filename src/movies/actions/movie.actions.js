@@ -1,4 +1,4 @@
-const API = 'https://webby-movies-app.herokuapp.com/api';
+const API = 'http://localhost:3000/api/';
 
 /* Common Handlers */
 export const operationSuccess = (info) => {

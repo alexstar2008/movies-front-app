@@ -99,7 +99,9 @@ class Movies extends Component {
                         <strong>Updating movies ...</strong>
                     </Alert>
                 )
-                    || (
+                }
+                {
+                    !isMovieLoading && (
                         <PanelGroup accordion id="accordion-example">
                             {moviesTemplates}
                         </PanelGroup>
