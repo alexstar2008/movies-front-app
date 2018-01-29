@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
-
+import PropTypes from 'prop-types';
 
 class MovieUploadForm extends Component {
     constructor(props) {
@@ -43,5 +43,10 @@ class MovieUploadForm extends Component {
         );
     }
 }
+
+MovieUploadForm.propTypes  = {
+    onSubmit: PropTypes.func   
+}
+
 
 export default MovieUploadForm;

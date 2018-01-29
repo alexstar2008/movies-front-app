@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Col, Glyphicon } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { orderBy } from '../actions/filter.actions';
 
@@ -29,6 +30,11 @@ function mapDispatchToProps(dispatch) {
     return {
         orderBy: bindActionCreators(orderBy, dispatch)
     }
+}
+
+ToolBar.propTypes  = {
+    orderBy: PropTypes.func,
+    order : PropTypes.bool  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToolBar);

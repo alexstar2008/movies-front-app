@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FormControl, ControlLabel, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import { setFilterName, setFilterActor } from '../actions/filter.actions';
 
@@ -49,6 +50,13 @@ function mapDispatchToProps(dispatch) {
         setFilterName: bindActionCreators(setFilterName, dispatch),
         setFilterActor: bindActionCreators(setFilterActor, dispatch)
     }
+}
+
+SearchBar.propTypes  = {
+    setFilterName: PropTypes.func,
+    setFilterActor: PropTypes.func,
+    name : PropTypes.string,
+    actor: PropTypes.string   
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

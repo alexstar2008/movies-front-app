@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 function Movie(props) {
     const { _id, name, year, format, actors } = props.movie;
@@ -43,6 +44,11 @@ function Movie(props) {
             </Panel.Body>
         </Panel>
     );
+}
+
+Movie.propTypes  = {
+    movie : PropTypes.object,
+    remove: PropTypes.func   
 }
 
 export default Movie;

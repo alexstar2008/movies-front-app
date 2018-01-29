@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormControl, ControlLabel, FormGroup, Col, Form, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import FieldGroup from './FieldGroup';
 
@@ -22,6 +23,12 @@ class MovieCreateForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
+        this.setState({
+            name: '',
+            year: '',
+            format: 'DVD',
+            actors: ''
+        });
         this.props.onSubmit(this.state);
     }
     render() {
@@ -80,6 +87,10 @@ class MovieCreateForm extends Component {
             </Form>
         );
     }
+}
+
+MovieCreateForm.propTypes  = {
+    onSubmit: PropTypes.func   
 }
 
 export default MovieCreateForm;

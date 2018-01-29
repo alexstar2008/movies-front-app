@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PanelGroup, Tabs, Tab, Panel, Alert, Well, Modal, Button } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Movie from '../components/Movie';
 import SearchBar from './SearchBar';
@@ -125,6 +126,17 @@ function mapDispatchToProps(dispatch) {
         uploadFile: bindActionCreators(uploadFile, dispatch),
         removeMovie: bindActionCreators(removeMovie, dispatch)
     }
+}
+
+Movies.propTypes  = {
+    addMovie: PropTypes.func,
+    getMovies: PropTypes.func,
+    uploadFile: PropTypes.func,
+    removeMovie: PropTypes.func,
+    movies: PropTypes.array,
+    err : PropTypes.any,
+    info: PropTypes.any,
+    isMovieLoading: PropTypes.bool   
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);
