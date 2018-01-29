@@ -3,22 +3,24 @@ import { PanelGroup, Tabs, Tab, Panel, Alert, Well, Modal, Button } from 'react-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-
-import Movie from './Movie';
+import Movie from '../components/Movie';
 import SearchBar from './SearchBar';
 import ToolBar from './ToolBar';
-import MovieCreateForm from './MovieCreateForm';
-import MovieUploadForm from './MovieUploadForm';
-import { addMovie, getMovies, uploadFile, removeMovie } from './actions/index';
-
-const API = 'https://webby-movies-app.herokuapp.com/api';
+import MovieCreateForm from '../components/MovieCreateForm';
+import MovieUploadForm from '../components/MovieUploadForm';
+import { addMovie, getMovies, uploadFile, removeMovie } from '../actions/movie.actions';
+import Utils from './Utils';
 
 class Movies extends Component {
     constructor(props) {
         super(props);
+        this.state = { movies: [], error: null, isLoading: false, showModal: false };
         this.removeMovie = this.removeMovie.bind(this);
         this.uploadFileWithMovies = this.uploadFileWithMovies.bind(this);
-        this.state = { movies: [], error: null, isLoading: false, showModal: false };
+        this.createMovie = this.createMovie.bind(this);
+    }
+    componentDidMount() {
+        this.props.getMovies();
     }
     createMovie(data) {
         data.actors = data.actors.split(/,\s*/);
@@ -32,10 +34,6 @@ class Movies extends Component {
     removeMovie(id) {
         this.setState({ showModal: true, removeId: id });
     }
-    componentDidMount() {
-        this.setState({ isLoading: true });
-        this.props.getMovies();
-    }
     handleCloseModal(status) {
         this.setState({ showModal: false });
         if (status) {
@@ -44,16 +42,9 @@ class Movies extends Component {
     }
     render() {
         const { movies, isMovieLoading, err, info } = this.props;
+        const moviesTemplates = movies && movies.map((movie, index) =>
+            <Movie key={movie['_id']} movie={movie} remove={this.removeMovie} index={index} />);
 
-        if (isMovieLoading) {
-            return (
-                <Alert bsStyle="warning">
-                    <strong>Updating list of movies ...</strong>
-                </Alert>
-            );
-        }
-
-        const moviesTemplates = movies && movies.map((movie, index) => <Movie key={movie['_id']} movie={movie} remove={this.removeMovie} index={index} />);
         return (
             <div className="container">
                 <Modal show={this.state.showModal} onHide={() => { this.handleCloseModal(false); }}>
@@ -102,59 +93,31 @@ class Movies extends Component {
                         <SearchBar />
                     </Panel.Body>
                 </Panel>
-                <PanelGroup accordion id="accordion-example">
-                    {moviesTemplates}
-                </PanelGroup>
+                {isMovieLoading && (
+                    <Alert bsStyle="warning">
+                        <strong>Updating movies ...</strong>
+                    </Alert>
+                )
+                    || (
+                        <PanelGroup accordion id="accordion-example">
+                            {moviesTemplates}
+                        </PanelGroup>
+                    )
+                }
             </div>
         );
     }
 }
 
 
-
-function sort(movies, type) {
-    const direction = type ? 1 : -1;
-    return movies.slice(0).sort((a, b) => {
-        if (a.name === b.name)
-            return 0;
-        if (a.name < b.name)
-            return -1 * direction;
-        return direction;
-    });
-}
-
-function getMoviesWithFilter(movies, filter) {
-    if (!movies.length)
-        return;
-
-    const actorSearch = filter.actorSearch;
-    const name = filter.name;
-    const order = filter.order;
-
-    if (actorSearch) {
-        movies = movies.filter(movie =>
-            movie.actors.some(actor => actor.toLowerCase().includes(actorSearch)));
-    }
-
-    if (name) {
-        movies = movies.filter(movie => movie.name.toLowerCase().includes(name))
-    }
-
-    if (typeof order === 'boolean') {
-        movies = sort(movies, order);
-    }
-    return movies;
-}
-
 function mapStateToProps(store) {
     return {
-        movies: getMoviesWithFilter(store.movies.list, store.filters),
+        movies: Utils.getMoviesWithFilter(store.movies.list, store.filters),
         err: store.movies.err,
         info: store.movies.info,
         isMovieLoading: store.movies.isMovieLoading
     }
 }
-
 function mapDispatchToProps(dispatch) {
     return {
         addMovie: bindActionCreators(addMovie, dispatch),

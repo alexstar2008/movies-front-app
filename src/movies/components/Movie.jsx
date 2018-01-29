@@ -8,6 +8,7 @@ function Movie(props) {
     function handleRemove() {
         props.remove(_id);
     }
+    
     return (
         <Panel eventKey={props.index}>
             <Panel.Heading>
@@ -23,7 +24,6 @@ function Movie(props) {
                             <Button bsStyle="danger" onClick={handleRemove} >Remove</Button>
                         </div>
                     </div>
-
                 </Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible>

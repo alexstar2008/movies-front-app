@@ -12,6 +12,11 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "react-addons-test-utils": "^15.5.1",
+    "react-scripts": "^1.0.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

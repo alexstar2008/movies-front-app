@@ -1,5 +1,18 @@
 const API = 'https://webby-movies-app.herokuapp.com/api';
 
+/* Common Handlers */
+export const operationSuccess = (info) => {
+    return {
+        type: 'MOVIE_OPERATION_SUCCESS',
+        info
+    }
+}
+export const operationErr = (err) => {
+    return {
+        type: 'MOVIE_OPERATION_ERR',
+        err
+    }
+}
 
 /* GET MOVIES */
 export const getMovies = () => {
@@ -30,20 +43,6 @@ export const movieGetSuccess = (movies) => {
 export const movieGetErr = (err) => {
     return {
         type: 'MOVIE_GET_ERR',
-        err
-    }
-}
-
-/* Common Handlers */
-export const operationSuccess = (info) => {
-    return {
-        type: 'MOVIE_OPERATION_SUCCESS',
-        info
-    }
-}
-export const operationErr = (err) => {
-    return {
-        type: 'MOVIE_OPERATION_ERR',
         err
     }
 }
@@ -113,17 +112,3 @@ export const removeMovie = (id) => {
             .catch(err => { dispatch(operationErr(err)); });
     }
 };
-
-/* FILTER */
-export const setFilterName = (name) => ({
-    type: 'SET_FILTER_NAME',
-    name
-});
-export const setFilterActor = (actorSearch) => ({
-    type: 'SET_FILTER_ACTOR',
-    actorSearch
-});
-export const orderBy = (order) => ({
-    type: 'ORDER_BY_TOGGLE',
-    order
-});

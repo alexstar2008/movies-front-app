@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Col, Glyphicon } from 'react-bootstrap';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { orderBy } from './actions/index';
+import { orderBy } from '../actions/filter.actions';
 
-function ToolBar({ order, orderBy  }) {
+
+function ToolBar({ order, orderBy }) {
     function handleClick() {
         orderBy(!order);
     }
@@ -25,7 +25,6 @@ function mapStateToProps(store) {
         order: store.filters.order
     }
 }
-
 function mapDispatchToProps(dispatch) {
     return {
         orderBy: bindActionCreators(orderBy, dispatch)

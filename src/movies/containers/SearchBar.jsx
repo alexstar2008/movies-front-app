@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { FormControl, ControlLabel, Col } from 'react-bootstrap';
-import { setFilterName, setFilterActor } from './actions/index';
+
+import { setFilterName, setFilterActor } from '../actions/filter.actions';
 
 
-function SearchBar({ update, movies, setFilterName, setFilterActor, name, actor }) {
+function SearchBar({ setFilterName, setFilterActor, name, actor }) {
     function filterByName(e) {
         const name = e.target.value.toLowerCase();
         setFilterName(name);
     }
-
     function filterByActor(e) {
         const actorSearch = e.target.value.toLowerCase();
         setFilterActor(actorSearch);
     }
-
     return (
         <div>
             <Col sm={4}>
@@ -39,7 +37,6 @@ function SearchBar({ update, movies, setFilterName, setFilterActor, name, actor 
     );
 
 }
-
 
 function mapStateToProps(store) {
     return {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { FormControl, ControlLabel, FormGroup, HelpBlock, Col, Form, Button } from 'react-bootstrap';
+import { FormControl, ControlLabel, FormGroup, Col, Form, Button } from 'react-bootstrap';
 
 import FieldGroup from './FieldGroup';
+
 
 class MovieCreateForm extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class MovieCreateForm extends Component {
             format: 'DVD',
             actors: ''
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleInputChange(e, type) {
         this.setState({
@@ -24,7 +26,7 @@ class MovieCreateForm extends Component {
     }
     render() {
         return (
-            <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+            <Form horizontal onSubmit={this.handleSubmit}>
                 <h3>New Movie:</h3>
                 <FieldGroup
                     id="formControlsName"
@@ -32,9 +34,9 @@ class MovieCreateForm extends Component {
                     label="Name"
                     placeholder="Enter name"
                     value={this.state.name}
-                    maxLength="150" 
+                    maxLength="150"
                     required
-                    onChange={(e) => { this.handleInputChange(e, 'name')}}
+                    onChange={(e) => { this.handleInputChange(e, 'name') }}
                 />
                 <FieldGroup
                     id="formControlsYear"
@@ -48,7 +50,7 @@ class MovieCreateForm extends Component {
                     onChange={(e) => { this.handleInputChange(e, 'year') }}
                 />
                 <FormGroup controlId="formControlsFormat">
-                    <Col sm={2}>
+                    <Col sm={2} >
                         <ControlLabel>Select</ControlLabel>
                     </Col>
                     <Col sm={4} >
@@ -66,11 +68,11 @@ class MovieCreateForm extends Component {
                         <ControlLabel>Actors (use "," separator) </ControlLabel>
                     </Col>
                     <Col sm={10}>
-                        <FormControl 
-                            componentClass="textarea" 
+                        <FormControl
+                            componentClass="textarea"
                             max="400"
                             placeholder="Antonio Banderas, George Cluni" value={this.state.actors}
-                            onChange={(e) => { this.handleInputChange(e, 'actors') }} 
+                            onChange={(e) => { this.handleInputChange(e, 'actors') }}
                         />
                     </Col>
                 </FormGroup>
