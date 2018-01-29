@@ -2,8 +2,9 @@
 
 This is the front-end part of "Movie-app".
 
+Live example [Heroku]: https://movies-app-front.herokuapp.com/
 
-##installation
+##Istallation
 
 1) Clone this repository: git clone https://github.com/alexstar2008/movies-front-app.git
 1) Make sure that you have latest @node and @npm versions
