@@ -31,6 +31,7 @@ class MovieUploadForm extends Component {
                             <input
                                 type="file"
                                 onChange={this.handleFileChange}
+                                accept=".txt"
                                 required
                             />
                         </Col>
