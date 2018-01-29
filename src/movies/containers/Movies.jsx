@@ -9,7 +9,7 @@ import ToolBar from './ToolBar';
 import MovieCreateForm from '../components/MovieCreateForm';
 import MovieUploadForm from '../components/MovieUploadForm';
 import { addMovie, getMovies, uploadFile, removeMovie } from '../actions/movie.actions';
-import Utils from './Utils';
+import Utils from '../Utils';
 
 class Movies extends Component {
     constructor(props) {
