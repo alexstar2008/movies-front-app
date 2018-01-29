@@ -4,6 +4,20 @@ This is the front-end part of "Movie-app".
 
 Live example [Heroku]: https://movies-app-front.herokuapp.com/
 
+Technologies: React + Redux + react-bootstrap (simple UI)
+
+Project structure:
+  
+  -actions ( fetching data and setting filters)
+  
+  -components ( form elements & single movie )
+  
+  -containers ( main 'movies' element & Searchbar & Toolbar )
+  
+  -reducers ( movie reducer & filter reducer )
+
+  -Utils ( filter & sort for list of movies )
+
 ## Installation
 
 1) Clone this repository: git clone https://github.com/alexstar2008/movies-front-app.git
